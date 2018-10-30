@@ -1,0 +1,5 @@
+mvn org.pitest:pitest-maven:mutationCoverage
+
+cd target/pit-reports/
+cd $(ls -td -- */ | head -n 1)
+open index.html
