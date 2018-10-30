@@ -36,6 +36,7 @@ class NavigationTest {
      * Map parser used to construct boards.
      */
     private MapParser parser;
+    public GhostFactory ghostFactory;
 
     /**
      * Set up the map parser.
@@ -45,6 +46,8 @@ class NavigationTest {
         PacManSprites sprites = new PacManSprites();
         parser = new MapParser(new LevelFactory(sprites, new GhostFactory(
             sprites)), new BoardFactory(sprites));
+
+        ghostFactory = new GhostFactory(sprites);
     }
 
     /**
@@ -156,5 +159,19 @@ class NavigationTest {
             Unit unit = Navigation.findNearest(Ghost.class, s1);
             assertThat(unit).isNotNull();
         }
+    }
+
+    /**
+     * Verifies that the ghost can be found on the board and is returned 
+     * correctly.
+     */
+    @Test
+    void testFindUnitInBoard() {
+        Board b = parser.parseMap(Lists.newArrayList("  ")).getBoard();
+        Square s1 = b.squareAt(0, 0);
+        Ghost ghost = ghostFactory.createBlinky();
+        ghost.occupy(s1);
+        Unit unit = Navigation.findUnitInBoard(Ghost.class, b);
+        assertThat(unit).isNotNull();
     }
 }

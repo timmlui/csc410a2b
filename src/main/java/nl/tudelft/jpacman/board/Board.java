@@ -1,10 +1,9 @@
 package nl.tudelft.jpacman.board;
 
-
 /**
  * A top-down view of a matrix of {@link Square}s.
  *
- * @author Jeroen Roosen 
+ * @author Jeroen Roosen
  */
 public class Board {
 
@@ -12,6 +11,16 @@ public class Board {
      * The grid of squares with board[x][y] being the square at column x, row y.
      */
     private final Square[][] board;
+
+    /**
+     * Main method to instantiate Board and to invoke SPF on a non-static method.
+     */
+    public static void main(String[] args) {
+        Square s = new BasicSquare();
+        Square[][] grid = {{s}};
+        Board board = new Board(grid);
+        board.withinBorders(0, 0);
+    }
 
     /**
      * Creates a new board.
