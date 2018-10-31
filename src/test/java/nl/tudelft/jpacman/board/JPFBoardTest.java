@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Test withinBorders of board via JPF.
  *
- * @author Timothy Lui
+ * @author Timothy Lui and Ivan Shen
  */
 class JPFBoardTest {
 
@@ -17,8 +17,11 @@ class JPFBoardTest {
 
         @BeforeEach
         void setUp() throws Exception {
-            Square s = new BasicSquare();
-            Square[][] grid = {{s}};
+            Square s1 = new BasicSquare();
+            Square s2 = new BasicSquare();
+            Square s3 = new BasicSquare();
+            Square s4 = new BasicSquare();
+            Square[][] grid = {{s1, s2}, {s3, s4}};
             this.board = new Board(grid);
         }
 
@@ -29,7 +32,7 @@ class JPFBoardTest {
 
         @Test
         void test1() {
-            assertThat(board.withinBorders(0,1)).isFalse();
+            assertThat(board.withinBorders(0,2)).isFalse();
         }
 
         @Test
@@ -39,7 +42,7 @@ class JPFBoardTest {
 
         @Test
         void test3() {
-            assertThat(board.withinBorders(1,-10)).isFalse();
+            assertThat(board.withinBorders(2,-10)).isFalse();
         }
 
         @Test

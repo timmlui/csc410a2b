@@ -16,8 +16,11 @@ public class Board {
      * Main method to instantiate Board and to invoke SPF on a non-static method.
      */
     public static void main(String[] args) {
-        Square s = new BasicSquare();
-        Square[][] grid = {{s}};
+        Square s1 = new BasicSquare();
+        Square s2 = new BasicSquare();
+        Square s3 = new BasicSquare();
+        Square s4 = new BasicSquare();
+        Square[][] grid = {{s1, s2}, {s3, s4}};
         Board board = new Board(grid);
         board.withinBorders(0, 0);
     }
