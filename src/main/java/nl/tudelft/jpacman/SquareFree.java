@@ -15,18 +15,25 @@ public class SquareFree {
     }
   
     public boolean isSquareFree(int n) {
+        // If n is 0 or negative
         if (n <= 0) {
             return false;
         }
         if (myMod(n, 2) == 0) {
             n = myDivision(n, 2);
+
+            // If 2 divides n again, then its not squarefree
+            if (myMod(n, 2) == 0) {
+                return false;
+            }
         }
-        if (myMod(n, 2) == 0) {
-            return false;
-        }
+        // n is odd now, so increment i by 2
         for (int i = 3; i <= n; i = i + 2) {
+            // check that i is prime
             if (myMod(n, i) == 0) {
                 n = myDivision(n, i);
+                
+                // if i divides n, then its not squarefree
                 if (myMod(n, i) == 0) {
                     return false;
                 }
@@ -35,7 +42,13 @@ public class SquareFree {
         return true;
     }
 
-    private int myDivision(int x, int y) {
+    /**
+     * Division using simple math
+     * @param x
+     * @param y
+     * @return int
+     */
+    public int myDivision(int x, int y) {
         int i = 0;
         if (x < y) {
             return 0;
@@ -47,7 +60,13 @@ public class SquareFree {
         return i;
     }
 
-    private int myMod(int x, int y) {
+    /**
+     * Modulo using simple math
+     * @param x
+     * @param y
+     * @return int
+     */
+    public int myMod(int x, int y) {
         if (x < y) {
             return x;
         }
